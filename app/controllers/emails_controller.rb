@@ -1,14 +1,14 @@
-class UsersController < InheritedResources::Base
+class EmailsController < InheritedResources::Base
 
   def new
-    @user = User.new
+    @email = Email.new
   end
 
   def create
-    @user = User.new(user_params)
+    @email = Email.new(email_params)
 
     respond_to do |format|
-      if @user.save
+      if @email.save
         format.html { redirect_to thankyou_path } #, "Thanks for signing up we'll send you an email when we go live!" }
       else
         format.html { render :new }
@@ -20,10 +20,10 @@ class UsersController < InheritedResources::Base
   private
 
     def set_user
-      @user = User.find(params[:id])
+      @email = Email.find(params[:id])
     end
 
-    def user_params
-      params.require(:user).permit(:email, :ip)
+    def email_params
+      params.require(:email).permit(:email, :ip)
     end
 end
